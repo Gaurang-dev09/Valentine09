@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Varshu 💖</title>
+
+<style>
+body{
+ margin:0;
+ font-family:"Comic Sans MS", cursive;
+ background:#ffd6e7;
+ overflow:hidden;
+}
+
+/* PASSWORD SCREEN */
+#passwordPage{
+ position:fixed;
+ inset:0;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ background:linear-gradient(135deg,#ffd6e7,#ffe9f3);
+ z-index:10000;
+}
+
+.pass-box{
+ background:white;
+ padding:30px;
+ border-radius:25px;
+ text-align:center;
+ width:85%;
+ max-width:320px;
+ box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.pass-box input{
+ width:80%;
+ padding:10px;
+ border-radius:20px;
+ border:1px solid #ccc;
+ margin-top:15px;
+ text-align:center;
+ font-size:18px;
+}
+
+.pass-box button{
+ margin-top:15px;
+ padding:10px 25px;
+ border:none;
+ border-radius:25px;
+ background:#ff4d9d;
+ color:white;
+ font-size:16px;
+}
+
+/* LOADING */
+#loading{
+ position:fixed;
+ inset:0;
+ background:linear-gradient(135deg,#ffd6e7,#ffe9f3);
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ z-index:9999;
+ display:none;
+}
+
+#loading img{ width:200px; }
+
+/* MAIN */
+.container{
+ height:100vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ text-align:center;
+ padding:20px;
+}
+
+.card{
+ background:rgba(255,255,255,0.45);
+ backdrop-filter:blur(10px);
+ padding:25px;
+ border-radius:25px;
+ width:90%;
+ max-width:340px;
+ box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1{ color:#ff3f8e; }
+
+/* BUTTONS */
+.buttons{
+ position:relative;
+ height:120px;
+ margin-top:20px;
+}
+
+button{
+ border:none;
+ padding:12px 25px;
+ border-radius:40px;
+ font-size:18px;
+ cursor:pointer;
+}
+
+#yes{ background:#ff4d9d; color:white; }
+
+#no{
+ position:fixed;
+ left:60%;
+ top:55%;
+ transform:translate(-50%,-50%);
+ background:white;
+ color:#ff4d9d;
+ transition:transform 0.35s ease;
+ z-index:1000;
+}
+
+/* COLLAGE VERTICAL */
+#collage{
+ position:fixed;
+ inset:0;
+ z-index:-1;
+ display:none;
+ overflow:hidden;
+}
+
+.scroll-track{
+ display:flex;
+ flex-direction:column;
+ animation:scrollY 25s linear infinite;
+}
+
+.scroll-track img{
+ width:100%;
+ height:100vh;
+ object-fit:cover;
+}
+
+@keyframes scrollY{
+ from{ transform:translateY(0); }
+ to{ transform:translateY(-50%); }
+}
+
+/* POPUP */
+.popup{
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,0.55);
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ opacity:0;
+ pointer-events:none;
+ transition:0.4s;
+ z-index:50;
+}
+
+.popup.active{
+ opacity:1;
+ pointer-events:auto;
+}
+
+.popup-box{
+ background:white;
+ padding:28px;
+ border-radius:25px;
+ width:85%;
+ max-width:320px;
+ text-align:center;
+ animation:pop 0.4s ease;
+}
+
+@keyframes pop{
+ from{ transform:scale(0.6); opacity:0; }
+ to{ transform:scale(1); opacity:1; }
+}
+
+/* BUTTERFLY */
+.butterfly{
+ position:fixed;
+ font-size:22px;
+ animation:fly 10s linear infinite;
+}
+
+@keyframes fly{
+ from{ transform:translateY(100vh) translateX(0); }
+ to{ transform:translateY(-10vh) translateX(80vw); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD PAGE -->
+<div id="passwordPage">
+ <div class="pass-box">
+  <h3>Guess my favourite day on earth? 💖</h3>
+  <input id="passInput" placeholder="Enter password">
+  <br>
+  <button onclick="checkPass()">Enter</button>
+  <p id="error" style="color:red;"></p>
+ </div>
+</div>
+
+<!-- LOADING -->
+<div id="loading">
+ <img src="teddy.gif">
+ <h3>Loading Love...</h3>
+</div>
+
+<!-- COLLAGE -->
+<div id="collage">
+ <div class="scroll-track">
+  <img src="1.jpg"><img src="2.jpg"><img src="3.jpg"><img src="4.jpg">
+
+  <!-- duplicate -->
+  <img src="1.jpg"><img src="2.jpg"><img src="3.jpg"><img src="4.jpg">
+  <img src="5.jpg"><img src="6.jpg"><img src="7.jpg">
+ </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+ <div class="card">
+  <h1>Will you be my Valentine Varshu? 💖</h1>
+
+  <div class="buttons">
+   <button id="yes">Yes 😍</button>
+   <button id="no">No 🙈</button>
+  </div>
+ </div>
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+ <div class="popup-box">
+  <h2 style="color:#ff4d9d;">Varshu 💕</h2>
+  <p>
+  You are my happiness 💖<br>
+  Thank you for being in my life ✨<br><br>
+  Forever Yours,<br>
+  <b>Ankush ❤️</b>
+  </p>
+ </div>
+</div>
+
+<audio id="song" src="song.mp3" loop></audio>
+
+<script>
+
+/* PASSWORD CHECK */
+function checkPass(){
+ let val=document.getElementById("passInput").value;
+ if(val==="1709"){
+   document.getElementById("passwordPage").style.display="none";
+   document.getElementById("loading").style.display="flex";
+
+   setTimeout(()=>{
+     document.getElementById("loading").style.display="none";
+   },2500);
+ }else{
+   document.getElementById("error").innerText="Try again 💔";
+ }
+}
+
+/* MAIN FUNCTIONS */
+const yes=document.getElementById("yes");
+const no=document.getElementById("no");
+const popup=document.getElementById("popup");
+const song=document.getElementById("song");
+const collage=document.getElementById("collage");
+
+/* YES */
+yes.onclick=()=>{
+ popup.classList.add("active");
+ collage.style.display="block";
+ song.play();
+ startButterflies();
+};
+
+/* NO MOVE */
+let currentX = window.innerWidth * 0.6;
+let currentY = window.innerHeight * 0.55;
+
+no.onclick = () => {
+
+  const padding = 60;
+
+  const minX = padding;
+  const minY = padding;
+
+  const maxX = window.innerWidth - padding;
+  const maxY = window.innerHeight - padding;
+
+  currentX = Math.random() * (maxX - minX) + minX;
+  currentY = Math.random() * (maxY - minY) + minY;
+
+  no.style.transform =
+    `translate(${currentX - window.innerWidth/2}px,
+               ${currentY - window.innerHeight/2}px)`;
+};
+
+/* BUTTERFLY */
+function startButterflies(){
+ setInterval(()=>{
+  const b=document.createElement("div");
+  b.className="butterfly";
+  b.innerHTML="🦋";
+  b.style.left=Math.random()*100+"vw";
+  document.body.appendChild(b);
+  setTimeout(()=>b.remove(),10000);
+ },900);
+}
+
+</script>
+
+</body>
+</html>
