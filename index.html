@@ -3,320 +3,354 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Varshu 💖</title>
+<title>Valentine</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+
 body{
  margin:0;
- font-family:"Comic Sans MS", cursive;
- background:#ffd6e7;
- overflow:auto;
-}
-
-/* PASSWORD SCREEN */
-#passwordPage{
- position:fixed;
- inset:0;
- display:flex;
- justify-content:center;
- align-items:center;
- background:linear-gradient(135deg,#ffd6e7,#ffe9f3);
- z-index:10000;
-}
-
-.pass-box{
- background:white;
- padding:30px;
- border-radius:25px;
- text-align:center;
- width:85%;
- max-width:320px;
- box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
-
-.pass-box input{
- width:80%;
- padding:10px;
- border-radius:20px;
- border:1px solid #ccc;
- margin-top:15px;
- text-align:center;
- font-size:18px;
-}
-
-.pass-box button{
- margin-top:15px;
- padding:10px 25px;
- border:none;
- border-radius:25px;
- background:#ff4d9d;
- color:white;
- font-size:16px;
- cursor:pointer;
-}
-
-/* LOADING */
-#loading{
- position:fixed;
- inset:0;
- background:linear-gradient(135deg,#ffd6e7,#ffe9f3);
- display:flex;
- flex-direction:column;
- justify-content:center;
- align-items:center;
- z-index:9999;
- display:none;
-}
-
-#loading img{ width:200px; }
-
-/* MAIN */
-.container{
- height:100vh;
- display:flex;
- justify-content:center;
- align-items:center;
- text-align:center;
- padding:20px;
- position:relative;
- z-index:5;
-}
-
-.card{
- background:rgba(255,255,255,0.55);
- backdrop-filter:blur(8px);
- padding:25px;
- border-radius:25px;
- width:90%;
- max-width:340px;
- box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
-
-/* BUTTONS */
-.buttons{
- position:relative;
- height:120px;
- margin-top:20px;
-}
-
-button{
- border:none;
- padding:12px 25px;
- border-radius:40px;
- font-size:18px;
- cursor:pointer;
-}
-
-#yes{ 
- background:#ff4d9d; 
- color:white; 
- position:absolute;
- left:30%; 
- top:50%; 
- transform:translate(-50%,-50%);
- }
-
-#no{
- background:white;
- color:#ff4d9d;
- position:absolute;
- left:70%; 
- top:50%; 
- transform:translate(-50%,-50%);
- transition:left 0.35s ease, top 0.35s ease;
- z-index:1000;
-}
-
-/* COLLAGE */
-#collage{
- position:fixed;
- inset:0;
- z-index:-1;
- display:none;
+ font-family:Poppins, sans-serif;
+ background:#f5e6d3;
  overflow:hidden;
 }
 
-.scroll-track{
- display:flex;
- flex-direction:column;
- animation:scrollY 25s linear infinite;
-}
-
-.scroll-track img{
+/* PAGES */
+.page{
+ position:absolute;
  width:100%;
- height:100vh;
- object-fit:cover;
-}
-
-@keyframes scrollY{
- from{ transform:translateY(0); }
- to{ transform:translateY(-50%); }
-}
-
-/* POPUP (ONLY WHITE BOX) */
-.popup{
- position:fixed;
- inset:0;
+ height:100%;
  display:flex;
  justify-content:center;
  align-items:center;
- background:transparent;
+ flex-direction:column;
+ transition: all .9s ease;
+}
+
+.hidden{
  opacity:0;
  pointer-events:none;
- transition:0.4s;
- z-index:50;
+ transform: translateY(40px);
+ filter: blur(6px);
 }
 
-.popup.active{
- opacity:1;
- pointer-events:auto;
-}
-
-.popup-box{
- background:white;
- padding:28px;
- border-radius:25px;
- width:85%;
- max-width:320px;
+h1,h2,h3{
+ font-family:'Dancing Script', cursive;
  text-align:center;
- animation:pop 0.35s ease;
 }
 
-@keyframes pop{
- from{ transform:scale(0.7); opacity:0; }
- to{ transform:scale(1); opacity:1; }
+button{
+ padding:12px 28px;
+ border-radius:30px;
+ border:none;
+ cursor:pointer;
+ background:#e6c8a8;
+ font-weight:600;
+ transition:.3s;
 }
 
-/* BUTTERFLY */
-.butterfly{
- position:fixed;
- font-size:22px;
- animation:fly 10s linear infinite;
+button:hover{
+ transform:scale(1.05);
+ box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
 
-@keyframes fly{
- from{ transform:translateY(100vh);}
- to{ transform:translateY(-10vh) translateX(80vw);}
+input{
+ padding:14px 22px;
+ border-radius:30px;
+ border:none;
+ font-size:16px;
+ outline:none;
 }
+
+/* MUSIC PLAYER */
+.music-glass{
+ width:420px;
+ min-height:640px;     /* 👈 Makes it taller */
+ border-radius:36px;
+ padding:34px 30px;
+ backdrop-filter: blur(18px);
+ background: rgba(255,255,255,.15);
+ border:1px solid rgba(255,255,255,.35);
+ box-shadow:0 18px 55px rgba(0,0,0,.30);
+
+ display:flex;               /* helps vertical spacing */
+ justify-content:center;
+}
+
+.music-content{
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:space-between;   /* spreads content vertically */
+ height:100%;
+}
+
+.song-cover{
+ width:320px;
+ height:320px;
+ object-fit:cover;
+ object-position:right top;
+ border-radius:32px;
+ box-shadow:0 18px 35px rgba(0,0,0,.35);
+ margin-bottom:22px;
+}
+
+.progress{
+ width:100%;
+ height:6px;
+ background:rgba(255,255,255,.4);
+ border-radius:20px;
+ overflow:hidden;
+}
+
+.progress div{
+ height:100%;
+ width:0%;
+ background:#d9a67a;
+}
+
+.lips{
+ position:absolute;
+ width:70px;
+ opacity:.25;
+ display:none;
+}
+
 </style>
 </head>
 
 <body>
 
 <!-- PASSWORD PAGE -->
-<div id="passwordPage">
- <div class="pass-box">
-  <h3>Guess my favourite day on earth? 💖</h3>
-  <input id="passInput" placeholder="Enter password">
-  <br>
-  <button onclick="checkPass()">Enter</button>
-  <p id="error" style="color:red;"></p>
- </div>
+<div id="lockPage" class="page">
+<h2>Guess my favourite day on earth 💖</h2>
+<input id="passInput" type="password" placeholder="Enter pass">
+<button style="margin-top:20px" onclick="checkPass()">Unlock
+<p id="wrongMsg" style="
+  margin-top:15px;
+  color:#b85c5c;
+  font-family:'Dancing Script', cursive;
+  font-size:20px;
+  display:none;
+">
+Hmm… that’s not it 🥺 try again 💕
+</p>
+</button>
 </div>
 
-<!-- LOADING -->
-<div id="loading">
- <img src="teddy.gif">
- <h3>Loading Love...</h3>
+<!-- PAGE 1 -->
+<div id="page1" class="page hidden">
+<h1>Will you be my Valentine?</h1>
+<img src="chick.gif" width="180">
+<div style="margin-top:20px">
+<button onclick="yesPage()">Yes</button>
+<button onclick="noPage()">No</button>
+</div>
 </div>
 
-<!-- COLLAGE -->
-<div id="collage">
- <div class="scroll-track">
-  <img src="1.jpg"><img src="2.jpg"><img src="3.jpg"><img src="4.jpg">
-  <img src="5.jpg"><img src="6.jpg"><img src="7.jpg"><img src="8.jpg">
-  <img src="1.jpg"><img src="2.jpg"><img src="3.jpg"><img src="4.jpg">
-  <img src="5.jpg"><img src="6.jpg"><img src="7.jpg"><img src="8.jpg">
- </div>
+<!-- NO PAGE -->
+<div id="pageNo" class="page hidden">
+<img src="bear.gif" width="180">
+<h2>I don't accept No as an answer</h2>
 </div>
 
-<!-- MAIN -->
-<div class="container">
- <div class="card" id="questionCard">
-  <h1>Will you be my Valentine Varshu? 💖</h1>
-  <div class="buttons">
-   <button id="yes">Yes 😍</button>
-   <button id="no">No 🙈</button>
-  </div>
- </div>
+<!-- GIFT SELECT -->
+<div id="giftPage" class="page hidden">
+<img src="bear.gif" width="160">
+<h2>Choose a Gift</h2>
+<div style="display:flex; gap:40px; margin-top:20px">
+<img src="gift1.png" width="90" onclick="gift1()" style="cursor:pointer">
+<img src="gift2.png" width="90" onclick="gift2()" style="cursor:pointer">
+<img src="gift3.png" width="90" onclick="gift3()" style="cursor:pointer">
+</div>
 </div>
 
-<!-- POPUP -->
-<div class="popup" id="popup">
- <div class="popup-box">
-  <h2 style="color:#ff4d9d;">Varshu 💕</h2>
-  <p>
-  You are my happiness 💖<br>
-  Thank you for being in my life ✨<br><br>
-  Forever Yours,<br>
-  <b>Ankush ❤️</b>
-  </p>
- </div>
+<!-- GIFT 1 MUSIC -->
+<div id="gift1Page" class="page hidden">
+<div style="display:flex; align-items:center; gap:40px">
+
+<img src="bear_left.gif" width="150">
+
+<div class="music-glass">
+<div class="music-content">
+
+<img id="cover" class="song-cover" src="cover1.jpg">
+<h3 id="songName">Song</h3>
+
+<div class="progress">
+<div id="bar"></div>
 </div>
 
-<audio id="song" src="song.mp3" loop></audio>
+<div style="display:flex; gap:22px">
+<img src="prev.png" width="45" onclick="prevSong()">
+<img id="playBtn" src="play.png" width="45" onclick="playPause()">
+<img src="next.png" width="45" onclick="nextSong()">
+</div>
+
+</div>
+</div>
+
+<img src="bear_right.gif" width="150">
+
+</div>
+
+<button style="margin-top:25px" onclick="backGift()">Go Back</button>
+</div>
+
+<!-- GIFT 2 -->
+<div id="gift2Page" class="page hidden">
+<div style="backdrop-filter:blur(12px); background:rgba(255,255,255,.2); padding:30px; border-radius:25px">
+<div style="display:flex; gap:40px">
+<img src="flower.png" width="170" style="transform:rotate(10deg)">
+<img src="cupcake.png" width="170" style="transform:rotate(-10deg)">
+</div>
+<h3 style="margin-top:20px">Got this for you >3</h3>
+</div>
+<button onclick="backGift()">Go Back</button>
+</div>
+
+<!-- GIFT 3 -->
+<div id="gift3Page" class="page hidden">
+
+<img id="lips" class="lips" src="lips.png">
+
+<div style="backdrop-filter:blur(14px); background:rgba(255,255,255,.2); padding:30px; border-radius:25px; position:relative; max-width:480px">
+
+<img src="flower.png" width="80" style="position:absolute; right:10px; bottom:10px; transform:rotate(12deg)">
+
+<h3 style="font-size:26px; line-height:1.6">
+In your eyes, I have found a home where my soul finally feels at rest.
+Every moment spent with you is a beautiful reminder that true happiness exists,
+and I am so grateful to walk this path by your side.
+</h3>
+
+</div>
+
+<button onclick="backGift()">Go Back</button>
+</div>
+
+<audio id="audio"></audio>
 
 <script>
-/* PASSWORD CHECK */
+
+/* PAGE SYSTEM */
+function show(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));
+ document.getElementById(id).classList.remove('hidden');
+}
+
+function show(id){
+ document.querySelectorAll('.page').forEach(p=>{
+   p.classList.add('hidden');
+ });
+ document.getElementById(id).classList.remove('hidden');
+}
+
 function checkPass(){
- let val=document.getElementById("passInput").value;
- if(val==="1709"){
-   document.getElementById("passwordPage").style.display="none";
-   document.getElementById("loading").style.display="flex";
-   setTimeout(()=>{document.getElementById("loading").style.display="none";},2000);
- }else{
-   document.getElementById("error").innerText="Try again 💔";
+
+ const input=document.getElementById('passInput');
+ const msg=document.getElementById('wrongMsg');
+
+ if(!input) return;
+
+ const pass=input.value.trim();
+
+ if(pass === "0320"){
+
+   if(msg) msg.style.display="none";
+   show("page1");
+
+ } else {
+
+   if(msg){
+     msg.style.display="block";
+   }
+
  }
 }
 
-/* ELEMENTS */
-const yes=document.getElementById("yes");
-const no=document.getElementById("no");
-const popup=document.getElementById("popup");
-const collage=document.getElementById("collage");
-const song=document.getElementById("song");
-const questionCard=document.getElementById("questionCard");
-
-/* YES CLICK */
-yes.onclick=()=>{
- popup.classList.add("active");
- collage.style.display="block";
- song.play();
- no.style.display="none";
- questionCard.style.display="none"; // remove question
- startButterflies();
-};
-
-/* NO BUTTON MOVE - NEVER BELOW SCREEN */
-no.addEventListener('mouseenter', moveNo);
-no.addEventListener('click', moveNo); // <-- add this line
-
-function moveNo(){
- const padding=20;
- const btnWidth = no.offsetWidth;
- const btnHeight = no.offsetHeight;
-
- const maxX = window.innerWidth - btnWidth - padding;
- const maxY = window.innerHeight - btnHeight - padding;
-
- const x = Math.random() * (maxX - padding) + padding;
- const y = Math.random() * (maxY - padding) + padding;
-
- no.style.left = x + 'px';
- no.style.top = y + 'px';
+function noPage(){
+ show('pageNo');
+ setTimeout(()=>show('page1'),3000);
 }
 
-/* BUTTERFLY */
-function startButterflies(){
- setInterval(()=>{
-  const b=document.createElement("div");
-  b.className="butterfly";
-  b.innerHTML="🦋";
-  b.style.left=Math.random()*100+"vw";
-  document.body.appendChild(b);
-  setTimeout(()=>b.remove(),10000);
- },900);
+function yesPage(){ show('giftPage'); }
+function gift1(){ show('gift1Page'); }
+function gift2(){ show('gift2Page'); }
+function gift3(){ show('gift3Page'); }
+function backGift(){ show('giftPage'); }
+
+/* MUSIC */
+const songs=[
+ {src:'song1.mp3', name:'Chitta', cover:'cover1.jpg'},
+ {src:'song2.mp3', name:'Toota Jo Kabhi Tara', cover:'cover2.jpg'},
+ {src:'song3.mp3', name:'Itni Si Baat Hai', cover:'cover3.jpg'}
+];
+
+let index=0;
+const audio=document.getElementById('audio');
+
+function loadSong(){
+ audio.src=songs[index].src;
+ document.getElementById('songName').innerText=songs[index].name;
+ document.getElementById('cover').src=songs[index].cover;
+ document.getElementById('playBtn').src='play.png';
 }
+
+function playPause(){
+ if(audio.paused){
+  audio.play();
+  playBtn.src='pause.png';
+ } else {
+  audio.pause();
+  playBtn.src='play.png';
+ }
+}
+
+function nextSong(){
+ index=(index+1)%songs.length;
+ loadSong();
+ audio.play();
+ playBtn.src='pause.png';
+}
+
+function prevSong(){
+ index=(index-1+songs.length)%songs.length;
+ loadSong();
+ audio.play();
+ playBtn.src='pause.png';
+}
+
+audio.addEventListener('ended',()=>{
+ playBtn.src='play.png';
+});
+
+loadSong();
+
+/* PROGRESS */
+setInterval(()=>{
+ if(audio.duration){
+  bar.style.width=(audio.currentTime/audio.duration)*100+'%';
+ }
+},400);
+
+/* LIPS */
+const lips=document.getElementById('lips');
+
+function placeLips(){
+ lips.style.left=Math.random()*70+'%';
+ lips.style.top=Math.random()*70+'%';
+}
+
+function lipsCycle(){
+ placeLips();
+ lips.style.display='block';
+ setTimeout(()=> lips.style.display='none',4000);
+}
+
+setInterval(lipsCycle,6000);
+
 </script>
 
 </body>
